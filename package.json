@@ -59,6 +59,6 @@
     "webpack-dev-server": "^4.9.2"
   },
   "resolutions": {
-    "autoprefixer": "10.4.5" // keeping this back because bootstrap is using deprecated things and not wanting to use the 5.2 beta release
+    "autoprefixer": "10.4.5"
 }
 }
