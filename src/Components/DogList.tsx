@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Col, Row, Form, InputGroup, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 
 
 export default class DogList extends React.Component {
@@ -52,7 +52,7 @@ export default class DogList extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="row align-items-center">
             <div className='col-sm'>
-              <p>Breed</p>
+              <p className="text-left">Breed</p>
               <Form.Select id='breed_select' onChange={this.handleChange} name='selected_breed' required='required' defaultValue={this.state.selected_breed} isInvalid={!(this.state.selected_breed)} >
               <option value=''>Select</option>
               {!this.state.fetching_breeds ?
@@ -67,7 +67,7 @@ export default class DogList extends React.Component {
 
             { (!this.state.fetching_breeds && this.state.selected_breed !== '' && this.state.breeds[this.state.selected_breed].length > 0) &&
               <div className='col-sm'>
-                <p>Sub Breed</p>
+                <p className="text-left">Sub Breed</p>
                 <Form.Select id='sub_breed_select' onChange={this.handleChange} name='selected_sub_breed' defaultValue={this.state.selected_sub_breed} >
                   <option value=''>Select</option>
                 {
@@ -80,7 +80,7 @@ export default class DogList extends React.Component {
             }
 
             <div className='col-sm'>
-              <p>Number of images</p>
+              <p className="text-left">Number of images</p>
               <Form.Control id='number_of_images_requested' type='number' name='number_of_images_requested' onChange={this.handleChange}
                 min='1' step='1' defaultValue='10' isInvalid={!(this.state.number_of_images_requested > 0)} required />
             </div>
