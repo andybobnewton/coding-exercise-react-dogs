@@ -1,19 +1,15 @@
 import React from 'react';
 import { mount } from '@cypress/react';
-import App from './App';
 
 it('Loads', () => {
-  mount(<App />);
   cy.get('p').contains('Breed');
 });
 
 
 it('renders list of dog breeds', () => {
-  mount(<App />);
   cy.get('#breed_select').contains('australian');
 });
 it('renders list of dog sub breeds', () => {
-  mount(<App />);
   cy.get('#breed_select').select('australian');
   cy.get('p').contains('Sub Breed');
   cy.get('#sub_breed_select').select('shepherd');
@@ -21,7 +17,6 @@ it('renders list of dog sub breeds', () => {
 
 
 it('can search for images and gets right number', () => {
-  mount(<App />);
   cy.get('#breed_select').select('australian');
   cy.get('#sub_breed_select').select('shepherd');
   cy.get('#number_of_images_requested').type('{backspace}{backspace}3');

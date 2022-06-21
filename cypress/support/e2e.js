@@ -16,8 +16,11 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import React from 'react';
-import { mount } from '@cypress/react';
-import App from './App';
+
+beforeEach(() => {
+	cy.visit('localhost:3000');
+})
+
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
