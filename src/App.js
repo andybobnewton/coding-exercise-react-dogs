@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <h3>Dogs</h3>  
       </header>
-      <div class='lg-12'>
+      <div className='lg-12'>
         <DogList/>
       </div>
     </div>
