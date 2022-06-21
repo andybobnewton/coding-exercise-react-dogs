@@ -9,7 +9,7 @@
     ],
     "types": [
       "cypress",
-      "cypress-wait-until"
+      "cypress-wait-until",
     ]
   },
   "include": [

@@ -1,20 +1,27 @@
-
 import React from 'react';
 import { Form, Button } from "react-bootstrap";
 
+type DogListState = {
+  breeds: IHash;
+  selected_breed: string
+  selected_sub_breed: string;
+  number_of_images_requested: int;
+  fetching_breeds: boolean;
+  image_urls: array;
+};
 
-export default class DogList extends React.Component {
+export default class DogList extends React.Component<{}, DogListState> {
+  state: DogListState = {
+    breeds: {},
+    selected_breed: '',
+    selected_sub_breed: '',
+    number_of_images_requested:10,
+    fetching_breeds:true,
+    image_urls:[]
+  };
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {
-      breeds: {},
-      selected_breed: '',
-      selected_sub_breed: '',
-      number_of_images_requested:10,
-      fetching_breeds:true,
-      image_urls:[]
-    };
   }
 
   componentDidMount() {
