@@ -1,4 +1,7 @@
+
 import React from 'react';
+import { Col, Row, Form, InputGroup, Button } from "react-bootstrap";
+
 
 export default class DogList extends React.Component {
   constructor(props) {
@@ -47,10 +50,10 @@ export default class DogList extends React.Component {
     return (
       <div id="layout-content" className="layout-content-wrapper">
         <form onSubmit={this.handleSubmit}>
-          <div className="d-flex flex-row">
-            <div className='p-2'>
+          <div className="row align-items-center">
+            <div className='col-sm'>
               <p>Breed</p>
-              <select id='breed_select' onChange={this.handleChange} name='selected_breed' required='required' defaultValue={this.state.selected_breed}>
+              <Form.Select id='breed_select' onChange={this.handleChange} name='selected_breed' required='required' defaultValue={this.state.selected_breed} isInvalid={!(this.state.selected_breed)} >
               <option value=''>Select</option>
               {!this.state.fetching_breeds ?
                 Object.keys(this.state.breeds).map(( breed_name) => {
@@ -59,38 +62,45 @@ export default class DogList extends React.Component {
                 :
                 <optgroup label='Loading'></optgroup>
               }
-              </select>
+              </Form.Select>
             </div>
 
             { (!this.state.fetching_breeds && this.state.selected_breed !== '' && this.state.breeds[this.state.selected_breed].length > 0) &&
-              <div className='p-2'>
+              <div className='col-sm'>
                 <p>Sub Breed</p>
-                <select id='sub_breed_select' onChange={this.handleChange} name='selected_sub_breed' defaultValue={this.state.selected_sub_breed} >
+                <Form.Select id='sub_breed_select' onChange={this.handleChange} name='selected_sub_breed' defaultValue={this.state.selected_sub_breed} >
                   <option value=''>Select</option>
                 {
                   this.state.breeds[this.state.selected_breed].map(( sub_breed_name) => {
                     return (<option key={sub_breed_name} value={sub_breed_name} >{sub_breed_name}</option>);
                   })
                 }
-                </select>
+                </Form.Select>
               </div>
             }
 
-            <div className='p-2'>
+            <div className='col-sm'>
               <p>Number of images</p>
-              <input id='number_of_images_requested' type='number' name='number_of_images_requested' onChange={this.handleChange}  min='1' step='1' defaultValue='10'/>
+              <Form.Control id='number_of_images_requested' type='number' name='number_of_images_requested' onChange={this.handleChange}
+                min='1' step='1' defaultValue='10' isInvalid={!(this.state.number_of_images_requested > 0)} required />
             </div>
-            <input id='submit_image_search' type="submit" value="View Images" />
+            <div className='col-sm'>
+              <Button id='submit_image_search' variant="primary" type="submit">
+                View Images
+              </Button>
+            </div>
           </div>
         </form>
-        <div >
+        <div className="row" >
         {
           this.state.image_urls.length > 0 && 
           this.state.image_urls.map((image_url) => {
             return (
+            <div className='col-sm'> 
               <a href={image_url}>
                 <img src={image_url} className='dog_image' alt="A dog from dog.ceo"/>
               </a>
+              </div>
               );
           })
         }
